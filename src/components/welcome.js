@@ -1,14 +1,9 @@
-// import Image from "next/image";
-// import Background from "../../public/background.jpg"
 import Link from "next/link";
 
 export default function Welcome () {
 
     return (
         <section>
-            {/* <div className="w-[100wh]">
-                <Image src={Background} alt="background" height={250} width={250} className="h-[50vh] w-[100wh] object-cover"/>
-            </div> */}
             <article className="relative bg-[url('/background.jpg')] bg-cover bg-center h-[50vh] w-[100vw]">
                 <div className="h-[50vh] flex flex-col justify-end text-white ml-[4em] pb-[3em]">
                     <h2 className="text-[62px]">Believe <br/> Yourself</h2>

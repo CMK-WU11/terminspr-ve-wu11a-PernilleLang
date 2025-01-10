@@ -45,7 +45,8 @@ export default async function Home () {
                         </div>
                     ))}
                     </article>
-                </div>    
+                </div> 
+                <div>hej</div> 
         </section>
     )
 }

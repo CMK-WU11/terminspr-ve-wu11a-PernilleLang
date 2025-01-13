@@ -46,9 +46,12 @@ export default function Navigation () {
                     <Link href="/search">
                         <li>Search</li>
                     </Link>
-                    <form >
-                        <li><button>Log Ind</button></li>
-                    </form>
+                        <li>Log Ind</li>
+                        <form action="" className="flex flex-col">
+                            <input required type="email" placeholder="Email" name="identifier"/>
+                            <input required type="password" placeholder="Password" name="password"/>
+                            <button type="submit">Log Ind</button>
+                        </form>
                 </ul>
             </nav>
         </div>

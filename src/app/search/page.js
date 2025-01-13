@@ -3,24 +3,24 @@ import Image from "next/image";
 import { BiSolidLeftArrow } from "react-icons/bi";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { CiSearch } from "react-icons/ci";
-import classDetails from "@/app/classdetails/[id]/page";
 
-export default async function Search ( {params} ) {
+export default async function Search () {
+
 
     // søgemetoden er kopieret fra dinmægler
 
-    const { q } = await params
+    // const { q } = await params
 
-    const searchresponse = await fetch("http://localhost:4000/api/v1/classes" + q,  {
-        "method": "GET"
-      })
+    // const searchresponse = await fetch("http://localhost:4000/api/v1/classes" + q,  {
+    //     "method": "GET"
+    //   })
 
-        // .then(response => console.log(response))
-        .catch(err => console.error(err));
+    //     // .then(response => console.log(response))
+    //     .catch(err => console.error(err));
 
-        const data = await searchresponse.json()
+    //     const data = await searchresponse.json()
 
-        console.log(data)
+    //     console.log(data)
 
     const responseClasses = await fetch(
         "http://localhost:4000/api/v1/classes",
@@ -45,12 +45,10 @@ export default async function Search ( {params} ) {
                 <HiMenuAlt3 className="fill-slate-200" size="30px"/>
             </div>
             <h2 className="text-[62px] ml-[0.5em]">Search</h2>
-            <div className="w-[100%]">
-                <button className="flex text-[28px] bg-[#E4E4E4] w-[13em] p-[0.5em] ml-[1.2em] mr-[1.5em] mt-[0.5em] text-slate-400 border rounded-xl border-slate-400">
-                    <CiSearch />
-                    Search classes
-                </button>
-            </div>
+            <form className="flex w-[100%] relative">
+                <CiSearch className="absolute left- top-1/2" />
+                <input type="search" placeholder="Search classes" className="flex text-[28px] bg-[#E4E4E4] w-[13em] p-[0.5em] ml-[1.2em] mr-[1.5em] mt-[0.5em] text-slate-400 border rounded-xl border-slate-400" />
+            </form>
             <div className="w-[100%]">
                 <h3 className="text-[40px] ml-[0.7em] mt-[0.5em]">Popular Classes</h3>
                 <article className="flex p-[1em] scrollbar overflow-x-scroll w-[50em]">
@@ -74,11 +72,11 @@ export default async function Search ( {params} ) {
                         </div>
                     ))}
                 </article>
-                <div>
+                {/* <div>
                     {data.map((search) => (
                        <classDetails key={search.id} search={search}></classDetails> 
                     ))}
-                </div>
+                </div> */}
                 
             </div>
         </section>

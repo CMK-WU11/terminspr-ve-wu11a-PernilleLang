@@ -4,7 +4,7 @@ import { BiSolidLeftArrow } from "react-icons/bi";
 import { HiMenuAlt3 } from "react-icons/hi";
 import Navigation from "@/components/navigation";
 
-export default async function Home ( {detailpage} ) {
+export default async function Home () {
 
     
     const responseClasses = await fetch(

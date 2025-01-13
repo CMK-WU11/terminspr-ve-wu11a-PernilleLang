@@ -6,12 +6,14 @@ import placeholder from "../../../../public/center.jpg";
 
 export default async function classDetails ( {params} ) {
 
+    //lavet efter din mægler opgaven//
+
     const {id} = params
 
     console.log("params id", id);
 
     const responseDetails = await fetch(
-        `http://localhost:4000/api/v1/classes`
+        `http://localhost:4000/api/v1/classes/${id}`
     );
 
     const details = await responseDetails.json();
@@ -49,7 +51,7 @@ export default async function classDetails ( {params} ) {
                         <h4 className="text-[50px] pt-[1em]">Trainer</h4>
                         <div className="flex">
                             <Image src={placeholder} width={250} height={250} alt="Trainer" className="w-[10em] h-[10em] object-cover border rounded-xl"/>  
-                            <p className="text-[28px] pt-[0.5em] pl-[0.5em]">Name</p>
+                            <p className="text-[28px] pt-[0.5em] pl-[0.5em]">{details.trainer.trainerName}</p>
                          </div>
                     </div>
                 </article>

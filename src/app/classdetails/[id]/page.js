@@ -6,17 +6,17 @@ import placeholder from "../../../../public/center.jpg";
 
 export default async function classDetails ( {params} ) {
 
-    // const {id} = params
+    const {id} = params
 
-    // console.log("params id", id);
+    console.log("params id", id);
 
-    // const responseDetails = await fetch(
-    //     `http://localhost:4000/api/v1/classes${id}`
-    // )
+    const responseDetails = await fetch(
+        `http://localhost:4000/api/v1/classes`
+    );
 
-    // const details = await responseDetails.json();
+    const details = await responseDetails.json();
     
-    // console.log(details);
+    console.log("details", details);
 
     return(
         <section>
@@ -28,7 +28,7 @@ export default async function classDetails ( {params} ) {
                         <HiMenuAlt3 className="fill-slate-200" size="30px"/>
                     </div>
                     <div className="flex">
-                        <h2 className="text-[50px] w-[5em] text-white ml-[0.5em] pb-[0.5em]">Flow Yoga Workout</h2>
+                        <h2 className="text-[50px] w-[5em] text-white ml-[0.5em] pb-[0.5em]">{details.className}</h2>
                         <Link href="" className="bg-white w-[40%] h-[3em] mt-[1.3em] text-3xl border rounded-l-lg flex justify-center">
                             <button>Sign Up</button>
                         </Link> 
@@ -37,13 +37,12 @@ export default async function classDetails ( {params} ) {
                 <article className="ml-[1em] mr-[1.5em]">
                     <h3 className="text-[50px] pt-[0.5em]">Schedule</h3>
                     <div className="flex justify-between ml-[0.5em]">
-                        <p>Day</p>
-                        <p>Time</p>
+                        <p>{details.classDay}</p>
+                        <p>{details.classTime}</p>
                     </div>
                     <div className="ml-[0.5em] mt-[2em]">
                         <p className="text-[20px]">
-                            We learn a few easy yoga position for a
-                            better posture and well-being.
+                           {details.classDescription}
                         </p>
                     </div>
                     <div className="mb-[10em]">

@@ -3,8 +3,24 @@ import Image from "next/image";
 import { BiSolidLeftArrow } from "react-icons/bi";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { CiSearch } from "react-icons/ci";
+import classDetails from "@/app/classdetails/[id]/page";
 
-export default async function Search () {
+export default async function Search ( {params} ) {
+
+    // søgemetoden er kopieret fra dinmægler
+
+    const { q } = await params
+
+    const searchresponse = await fetch("http://localhost:4000/api/v1/classes" + q,  {
+        "method": "GET"
+      })
+
+        // .then(response => console.log(response))
+        .catch(err => console.error(err));
+
+        const data = await searchresponse.json()
+
+        console.log(data)
 
     const responseClasses = await fetch(
         "http://localhost:4000/api/v1/classes",
@@ -58,6 +74,12 @@ export default async function Search () {
                         </div>
                     ))}
                 </article>
+                <div>
+                    {data.map((search) => (
+                       <classDetails key={search.id} search={search}></classDetails> 
+                    ))}
+                </div>
+                
             </div>
         </section>
     )

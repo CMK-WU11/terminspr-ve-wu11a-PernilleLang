@@ -15,6 +15,7 @@ export default async function Home ( {detailpage} ) {
 
     return (
         <section className="ml-[2em] mr-[2em]">
+            <h1>Godmorgen</h1>
                 <h2 className="text-3xl flex justify-center m-[1em]">Popular Classes</h2>
                 <div className="flex justify-between mb-[2em]">
                     <Link href="/">

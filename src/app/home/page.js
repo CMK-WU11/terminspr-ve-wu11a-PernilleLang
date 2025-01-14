@@ -1,12 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { BiSolidLeftArrow } from "react-icons/bi";
-import { HiMenuAlt3 } from "react-icons/hi";
 import Navigation from "@/components/navigation";
+
 
 export default async function Home () {
 
-    
     const responseClasses = await fetch(
         "http://localhost:4000/api/v1/classes",
     )
@@ -22,12 +21,11 @@ export default async function Home () {
                     <Link href="/">
                         <BiSolidLeftArrow className="fill-slate-200" size="30px"/>
                     </Link>
-                    <HiMenuAlt3 className="fill-slate-200" size="30px"/>
                     <Navigation/>
                 </div>
                 <div key={classes.id} className="flex justify-center">
-                    <Image src={classes[3].asset.url} width={300} height={300} alt="headphoto" className="relative h-[40em] w-[30em] object-cover border rounded-3xl"/>
-                    <p className="text-white text-[50px] pl-[1em] absolute bottom-36">{classes[3].className}</p>
+                    <Image src={classes[3].asset.url} width={300} height={300} alt="headphoto" priority className="relative h-[40em] w-[30em] object-cover border rounded-3xl"/>
+                    <p className="text-white text-[50px] pl-[1em] absolute bottom-0">{classes[3].className}</p>
                 </div>
                 <div className="mb-[3em]">
                     <p className="text-4xl mt-[0.5em]">Classes for you</p>

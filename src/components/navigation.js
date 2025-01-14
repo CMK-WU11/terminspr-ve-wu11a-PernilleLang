@@ -1,40 +1,50 @@
 "use client"
 
-// import React, { useState } from 'react';
 import { RxCross2 } from "react-icons/rx";
+import { HiMenuAlt3 } from "react-icons/hi";
 import Link from "next/link";
-import { useActionState, useState } from "react";
+import Login from "@/actions/login"
+import { redirect } from "next/navigation"
+import { useActionState, useEffect, useState } from "react";
 
 export default function Navigation () {
 
-    const [isOpen, setIsOpen] = useState(false); 
-    const handleToggle = () => setIsOpen(!isOpen);
-    // const handleClick = () => {
-    //     setIsOpen(!isOpen);
-    // };
+    const [isOpen, setIsOpen] = useState(false);
 
-    // const [formState, formAction] = useActionState(login, null)
+    //useEffect er kopieret fra "din mægler" opgaven//
+    const [formState, formAction] = useActionState(Login, null)
 
-    // useEffect(function() {
+    useEffect(function() {
+        console.log (formState)
+        if (!formState) return
 
-    //     if (!formState) return
+        if (!formState.success){
+            alert("Der er desværre sket en fejl!")
+        }
 
-    //     if (!formState.success){
-    //         alert("FEJL!")
-    //     }
+        if (formState.success){
+            redirect("/myschedule")
+        }
 
-    //     if (formState.success){
-    //         redirect("/favorite")
-    //     }
+    }, [formState]) //dependecy array
 
-    // }, [formState]) //dependecy array
 
-    //Login metoden er brugt som i din mægler
+    // Login metoden er brugt som i din mægler
+
+    function toggleMenu() {
+        console.log("clicked");
+        setIsOpen(prev => !prev)
+        
+    }
 
     return(
-        <div>
+        
+        <>
+        <HiMenuAlt3 onClick={toggleMenu} className="fill-slate-200" size="30px"/>
+        { isOpen && 
+        <div className="bg-slate-500 absolute top-0 w-[100%] h-[100%]">
             <div className="flex justify-end mt-[3em]">
-                <button onClick={handleToggle} >
+                <button>
                     <RxCross2 className="fill-[#E4E4E4]" size="30px" />
                 </button>
             </div>
@@ -47,14 +57,15 @@ export default function Navigation () {
                         <li>Search</li>
                     </Link>
                         <li>Log Ind</li>
-                        <form action="" className="flex flex-col">
-                            <input required type="email" placeholder="Email" name="identifier"/>
-                            <input required type="password" placeholder="Password" name="password"/>
-                            <button type="submit">Log Ind</button>
+                        <form action={formAction} method="POST" className="flex justify-center mt-[2em]">
+                            <input required type="text" placeholder="User" name="username" className="w-[20%] text-[15px] ml-[0.5em]"/>
+                            <input required type="password" placeholder="Password" name="password" className="w-[20%] text-[15px]"/>
+                            <button type="submit" className="w-[20%] text-[15px] text-gray-400 ml-[1em]">Log Ind</button>
                         </form>
                 </ul>
             </nav>
         </div>
-        <h1>Godmorgen</h1>
+        }
+        </>
     )
 }

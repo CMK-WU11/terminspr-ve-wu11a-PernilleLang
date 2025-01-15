@@ -65,6 +65,7 @@ export default function Navigation () {
                 </ul>
             </nav>
         </div>
+        <h1>Godmorgen</h1>
         }
         </>
     )
